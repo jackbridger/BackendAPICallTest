@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 var handlers = module.exports = {};
 
 var headers = {
@@ -11,7 +12,7 @@ handlers.home = function(req, res){
 
 handlers.getRandomImg = (req, res) => {
     res.writeHead(200, headers);
-    res.end('random img page')
+    fetch('https://api.kanye.rest').then(response => response.text()).then(body => res.end(body))
 }
 
 handlers.notFound = function(req, res){
